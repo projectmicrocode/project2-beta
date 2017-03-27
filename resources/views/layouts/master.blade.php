@@ -9,7 +9,7 @@
 	
 </head>
 <body>
-<header>
+<div class="header">
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
     		<div class="navbar-header">
@@ -38,26 +38,26 @@
       		</ul>
   		</div>
 	</nav>
-</header>
+</div>
 
 
 	<!-- navigation -->
 
-	<div class="content">
+<div class="content">
   @yield('content')
   
 </div>
 	
 
 
-<footer class="card-footer">
+<div class="footer-bottom">
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; Your Website 2017</p>
                 </div>
             </div>
             <!-- /.row -->
-        </footer>
+        </div>
 	
   
   
@@ -70,10 +70,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script type="text/javascript">
   $(document).ready(function () {
-    $("#showModal").click(function () {
+    $("#showModal,#btnChiTietDeTai").click(function () {
+
       $('#myModal').modal('show')
     });
   });
   </script>
+
 </body>
 </html>

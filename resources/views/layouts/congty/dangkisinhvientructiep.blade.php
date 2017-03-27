@@ -82,11 +82,11 @@
             <li><span>Họ và tên: </span>{{$val->hoten}}</li>
             <li><span>Mã số Sinh Viên: </span>{{$val->mssv}}</li>
             <li><span>Đề Tài: </span>{{$val->detai}}</li>
-           
-
-          </ul>
+           </ul>
         @endforeach
   			</div>
+
+        <div class="modal-footer">{{$datasv ->render()}}</div>
 		</div>
 </div>
 @endsection

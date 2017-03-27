@@ -8,6 +8,8 @@ use App\SinhVienDacBiet;
 use App\Http\Requests\DangKiSinhVienDacBietRequest;
 use DateTime;
 use App\SinhVien;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DangKiSinhVienDacBietController extends Controller
 {
@@ -27,11 +29,13 @@ class DangKiSinhVienDacBietController extends Controller
         }
          if($count == 1){
             // return redirect()->route('addSinhVienDacBiet');
+            $id = Auth::id();
            $svdb = new SinhVienDacBiet;
 			$svdb->hoten = $request->txtName;
 			$svdb->mssv = $request->txtMssv;
 			$svdb->detai = $request->sltDeTai;
 			$svdb->tinhtrang = 0;
+			$svdb->id_user = $id;
 			$svdb->created_at = new DateTime();
             $svdb->save();
             	
@@ -46,8 +50,10 @@ class DangKiSinhVienDacBietController extends Controller
 		
 }
 	public function getChiTietSVDacBiet(){
+		$id = Auth::id();
 		$datadetai = DeTai::select('tendetai')->where('tinhtrang',1)->get();
-		$datasv = SinhVienDacBiet::select('hoten','mssv','detai')->get();
+		$datasv = DB::table('sinhviendacbiet')->where('id_user',$id)->select('hoten','mssv','detai')->paginate(2);
+		
 
 		
 		// return $data;

@@ -39,4 +39,30 @@ class DeTaiController extends Controller
                
         return view('layouts/congty/dangkidetai',['data'=>$data]);
     }
+    public function getChiTietDeTaiChoDuyet(){
+         // $id = Auth::id(); 
+
+        $data = DB::table('detai')
+                ->join('users','users.id','=','detai.id_user')
+                
+                ->select('detai.*','users.name')->get();
+        // $detai = DB::table('detai')
+        //         ->select('*')
+        //         ->paginate(2);
+                // return $data;
+        return view('layouts/giangvienphutrach/danhsachdetaichoduyet',['data'=>$data]);
+    }
+    public function postDuyetDeTai($id){
+        DB::table('detai')->where('id',$id)->update(['tinhtrang'=>1]);
+        
+        return redirect()->route('getChiTietDeTaiChoDuyet');
+    }
+    public function postChiTietDeTaiChoDuyet($id){
+         $data = DB::table('detai')
+                ->join('users','users.id','=','detai.id_user')
+                ->where('detai.id',$id)
+                ->select('detai.*','users.name')->get();
+        // return $data;
+       return view('layouts/chitietdetai',['data'=>$data]);
+    }
 }

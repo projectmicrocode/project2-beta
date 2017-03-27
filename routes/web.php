@@ -74,3 +74,8 @@ Route::get('deleteGV/{id}',['as'=>'getDelete','uses'=>'GiangVienController@getDe
 Route::get('danhsachdetaidacbiet',['as'=>'getDanhSachDeTaiDacBiet','uses'=>'DangKiSinhVienDacBietController@getDanhSachDeTaiDacBiet']);
 Route::post('dangkisinhvientructiep',['as'=>'postDangKiSVTrucTiep','uses'=>'DangKiSinhVienDacBietController@postDangKiSVTrucTiep']);
 Route::get('chitietsinhviendacbiet',['as'=>'getChiTietSVDacBiet','uses'=>'DangKiSinhVienDacBietController@getChiTietSVDacBiet'])->middleware('auth');
+
+//danh sách đề tài chờ duyệt
+Route::get('chitietdetaichoduyet',['as'=>'getChiTietDeTaiChoDuyet','uses'=>'DeTaiController@getChiTietDeTaiChoDuyet'])->middleware('auth');
+Route::post('duyetDeTai/{id}',['as'=>'postDuyetDeTai','uses'=>'DeTaiController@postDuyetDeTai']);
+Route::post('chitietdetaichoduyet/{id}',['as'=>'postChiTietDeTaiChoDuyet','uses'=>'DeTaiController@postChiTietDeTaiChoDuyet'])->middleware('auth');

@@ -20,6 +20,8 @@ class CreateSinhviendacbienTable extends Migration
             $table->string('mssv');
             
             $table->string('detai');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });    
     }

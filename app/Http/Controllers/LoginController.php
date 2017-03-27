@@ -22,7 +22,7 @@ class LoginController extends Controller
     				return "đây là trang của sinh viên";
     				break;
     			case 2:
-    				return "đây là trang của Giảng Viên Phụ trách";
+    				return redirect()->route('getChiTietDeTaiChoDuyet');
     				break;
     			case 3:
     				return "đây là trang của Giảng Viên hướng dẫn";

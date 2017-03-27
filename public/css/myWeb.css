@@ -6,13 +6,8 @@ p{
 	text-align: center;
 	height: 50px;
 }
-.content{
-height: 500px;
-}
 
-.row{
-	background-color: #f8f8f8;
-}
+
 .error ul li{
 	list-style-type: none;
 	color: red;
@@ -22,6 +17,17 @@ height: 500px;
 }
 
 .panel-body ul li{
+	list-style-type: none;
+}
+.col-lg-9 .footer{
+	
+	padding-left: 500px;
+}
+
+.col-lg-9 .content-list{
+	padding-top: 20px;
+}
+.col-lg-9 .content-list ul li{
 	list-style-type: none;
 }
 
