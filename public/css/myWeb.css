@@ -1,0 +1,27 @@
+.navbar-brand {
+	padding-top: 10px;
+}
+
+p{
+	text-align: center;
+	height: 50px;
+}
+.content{
+height: 500px;
+}
+
+.row{
+	background-color: #f8f8f8;
+}
+.error ul li{
+	list-style-type: none;
+	color: red;
+}
+.error ul li span{
+	color: #FFBF00;
+}
+
+.panel-body ul li{
+	list-style-type: none;
+}
+
