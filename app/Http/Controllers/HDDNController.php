@@ -31,10 +31,11 @@ class HDDNController extends Controller
     	$user->email = $request->txtEmail;
     	$user->password = $request->txtPass;
     	$user->id_doituong = 5;
+        $user->tinhtrang = 0;
     	$user->created_at =  new DateTime();
     	$user->save();
 
-    	return redirect()->route('getChitiethddn');
+    	return redirect()->route('getChitiethddn')->with('status', 'Thêm Thành Công!');
     }
     public function getChitiethddn(){
     	$id = Auth::id(); 

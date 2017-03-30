@@ -57,6 +57,11 @@
                             
             </div>    
           </div> -->
+           @if (session('status'))
+          <div class="alert alert-success">
+          {{ session('status') }}
+          </div>
+          @endif
 
           <div class="modal-footer">
           <div class="col-md-3 col-md-offset-5">

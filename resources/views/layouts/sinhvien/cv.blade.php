@@ -15,7 +15,7 @@
 		</ul>
 		<br>
 		<br>
-
+		@include('layouts.error.error')
 		<div class="content-list" >
 			<form name  ="frmSinhVien" class="form-horizontal" action="themcv" method="POST">
 					<input type ="hidden" name="_token" value="{{ csrf_token() }}">
@@ -71,6 +71,11 @@
 							
 						</div>    
 					</div>
+						@if (session('status'))
+						<div class="alert alert-success">
+						{{ session('status') }}
+						</div>
+						@endif
 					<div class="modal-footer">
 						<div class="col-md-3 col-md-offset-5">
 							<input type ="submit" name="nopvc" id="nopvc" class="btn btn-primary btn-lg btn-block" value="Gửi">

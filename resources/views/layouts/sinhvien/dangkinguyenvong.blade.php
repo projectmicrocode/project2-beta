@@ -26,7 +26,7 @@
 						<div class  ="col-sm-9">
 							
 						@if(count($data) > 0)
-							<select name="nguyenvong1" class="form-control" ng-model="sinhvien.sltCate" ng-required="true">
+							<select name="nguyenvong1" class="form-control" >
 							<option value="0">--- Nguyện Vọng ---</option>	
 								@foreach($data as $val)
 									<option value="{{$val->tendetai}}">{{$val->tendetai}} - {{$val->name}}</option>
@@ -72,7 +72,11 @@
 							
 						</div>
 					</div>
-					
+						@if (session('status'))
+						<div class="alert alert-success">
+						{{ session('status') }}
+						</div>
+						@endif
 					<div class="modal-footer">
 						<div class="col-md-3 col-md-offset-5">
 							<input type ="submit" name="submit" id="dangkidetai" class="btn btn-primary btn-lg btn-block" value="Đăng Kí">

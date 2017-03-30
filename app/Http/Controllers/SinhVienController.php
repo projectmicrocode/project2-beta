@@ -15,6 +15,7 @@ use App\Http\Requests\NopBaoCaoRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CVRequest;
 use App\CV;
+use App\NguyenVong;
 
 
 class SinhVienController extends Controller
@@ -99,9 +100,31 @@ class SinhVienController extends Controller
         // return view('layouts/congty/dangkisinhvientructiep',['data'=>$data]);
          return view('layouts/sinhvien/dangkinguyenvong',['data'=>$data]);
     }
-    public function postthemnguyenvong(NguyenVongRequest $request){
+    public function postthemnguyenvong(Request $request){
+
+        $id = Auth::id();
+       
 
         
+
+        // if($nv1 == 0){
+            
+        //     return "false!";
+        // }
+        // else if(($nv1 == $nv2) || ($nv1 == $nv3) || ($nv2 == $nv3) ){
+        //        return "false!";
+        // }
+        // else{
+            $nguyenvong = new NguyenVong;
+            $nguyenvong->nguyenvong1 = $request->nguyenvong1;
+            $nguyenvong->nguyenvong2 = $request->nguyenvong2;
+            $nguyenvong->nguyenvong3 = $request->nguyenvong3;
+            $nguyenvong->created_at = new DateTime();
+            $nguyenvong->save();
+             return redirect()->route('getdangkinguyenvong')->with('status', 'Thêm Thành Công');
+        //     return "true!";
+        // }
+
    
         
     }
@@ -148,6 +171,6 @@ class SinhVienController extends Controller
         $cv->id_user = $data->id;
         $cv->created_at = new DateTime();
         $cv->save();
-        return "gửi thành công!";
+        return redirect()->route('')->with('status', 'Thêm Thành Công!');
     }
 }

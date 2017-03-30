@@ -56,6 +56,9 @@
                             
             </div>    
           </div>
+          <div class  ="form-group">
+             <label for  ="inputEmail3" class="col-sm-3 control-label">Deadline Nộp Đề Tài:</label>
+          </div>
           @if (session('status'))
           <div class="alert alert-success">
           {{ session('status') }}
