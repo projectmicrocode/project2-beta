@@ -39,11 +39,11 @@ class DangKiSinhVienDacBietController extends Controller
 			$svdb->created_at = new DateTime();
             $svdb->save();
             	
-            return redirect()->route('getChiTietSVDacBiet');
+            return redirect()->route('getChiTietSVDacBiet')->with('status', 'Thành Công!');
 
         }
         else{
-        	return redirect()->back();
+        	return redirect()->back()->with('status', 'Thêm Thất Bại! Sinh Viên Không Tồn Tại');
         }
 
 

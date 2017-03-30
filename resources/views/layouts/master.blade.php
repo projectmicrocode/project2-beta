@@ -4,17 +4,21 @@
 	<meta charset="UTF-8">
 	<title>Quy Trinh Thực Tập Sinh Viên</title>
 	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/myWeb.css">
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="{{asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')}}" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  
+	<link rel="stylesheet" type="text/css" href="{{asset('css/myWeb.css')}}">
 	
 </head>
 <body>
+<div>
 <div class="header">
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
     		<div class="navbar-header">
       			<a class="navbar-brand" href="#">
-        			<img  src="../storage/img/college-graduation.png">
+        			<img  src="{{asset('../storage/img/college-graduation.png')}}">
+
       			</a>
       			<a class="navbar-brand" href="#">QT P2_04</a>
 
@@ -43,13 +47,16 @@
 
 	<!-- navigation -->
 
-<div class="content">
+<div class="container">
   @yield('content')
   
 </div>
 	
 
-
+<br>
+<br>
+<br>
+<br>
 <div class="footer-bottom">
             <div class="row">
                 <div class="col-lg-12">
@@ -57,17 +64,17 @@
                 </div>
             </div>
             <!-- /.row -->
-        </div>
-	
+</div>
+</div>	
   
   
 	
 
+<script src="{{asset('//code.jquery.com/jquery.js')}}"></script>
+  <script src="{{asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')}}" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-
-	<script src="//code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	
   <script type="text/javascript">
   $(document).ready(function () {
     $("#showModal,#btnChiTietDeTai").click(function () {

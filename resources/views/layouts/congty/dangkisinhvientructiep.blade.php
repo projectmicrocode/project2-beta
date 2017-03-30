@@ -4,7 +4,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="col-lg-9">
+<div class="col-lg-8">
 		<ul class="nav nav-tabs">
   			<li role="presentation" ><a href="{!!url('chitietdetai')!!}">Đăng Kí Đề Tài</a></li>
 
@@ -57,7 +57,11 @@
           </div>
           
           </div>
-          <brs>
+           @if (session('status'))
+          <div class="alert alert-success">
+          {{ session('status') }}
+          </div>
+          @endif
       
 
           <div class="modal-footer">
@@ -70,10 +74,10 @@
   
 		
 </div>
-<div class="col-lg-3">
+<div class="col-lg-4">
 		<div class="panel panel-primary">
   			<div class="panel-heading">
-    			<h3 class="panel-title">Trạng Thái</h3>
+    			<h3 class="panel-title">Danh Sách Sinh Viên Đặc Biệt</h3>
   			</div>
   			<div class="panel-body">
 

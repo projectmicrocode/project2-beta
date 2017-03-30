@@ -79,3 +79,37 @@ Route::get('chitietsinhviendacbiet',['as'=>'getChiTietSVDacBiet','uses'=>'DangKi
 Route::get('chitietdetaichoduyet',['as'=>'getChiTietDeTaiChoDuyet','uses'=>'DeTaiController@getChiTietDeTaiChoDuyet'])->middleware('auth');
 Route::post('duyetDeTai/{id}',['as'=>'postDuyetDeTai','uses'=>'DeTaiController@postDuyetDeTai']);
 Route::post('chitietdetaichoduyet/{id}',['as'=>'postChiTietDeTaiChoDuyet','uses'=>'DeTaiController@postChiTietDeTaiChoDuyet'])->middleware('auth');
+
+//danh sách sinh viên đặc biệt chờ duyệt
+Route::get('danhsachsinhviendacbietchoduyet',['as'=>'getdanhsachsinhviendacbietchoduyet','uses'=>'SinhVienDacBietController@getdanhsachsinhviendacbietchoduyet'])->middleware('auth');
+Route::post('duyetsinhviendacbiet/{id}',['as'=>'postduyetsinhviendacbiet','uses'=>'SinhVienDacBietController@postduyetsinhviendacbiet'])->middleware('auth');
+//danh sách sinh viên đặc biệt chờ duyệt
+Route::get('danhsachsinhvienchoduyet',['as'=>'getdanhsachsinhvienchoduyet','uses'=>'SinhVienController@getdanhsachsinhvienchoduyet'])->middleware('auth');
+Route::post('duyetsinhvien/{id}',['as'=>'postduyetsinhvien','uses'=>'SinhVienController@postduyetsinhvien'])->middleware('auth');
+
+// Điền CV
+Route::get('diencv',['as'=>'getdiencv','uses'=>'SinhVienController@getdiencv'])->middleware('auth');
+Route::post('themcv',['as'=>'postthemcv','uses'=>'SinhVienController@postthemcv']);
+
+//Sinh Viên Đăng Kí Nguyện Vọng
+Route::get('dangkinguyenvong',['as'=>'getdangkinguyenvong','uses'=>'SinhVienController@getdangkinguyenvong'])->middleware('auth');
+Route::post('themnguyenvong',['as'=>'postthemnguyenvong','uses'=>'SinhVienController@postthemnguyenvong']);
+
+// Sinh Viên Nộp Báo cáo
+Route::get('nopbaocao',['as'=>'getnopbaocao','uses'=>'SinhVienController@getnopbaocao'])->middleware('auth');
+Route::post('nopbaocao',['as'=>'postnopbaocao','uses'=>'SinhVienController@postnopbaocao'])->middleware('auth');
+
+Route::get('danhsachbaocaodanop',['as'=>'getdanhsachbaocaodanop','uses'=>'SinhVienController@getdanhsachbaocaodanop']);
+//huong dan doanh nghiep nop de cuong
+Route::get('chitietdecuong',['as'=>'getchitietdecuong','uses'=>'HDDNController@getchitietdecuong']);
+Route::post('nopdecuong',['as'=>'postnopdecuong','uses'=>'HDDNController@postnopdecuong']);
+
+//gvhd xem danh sách sinh viên đang thực tập
+Route::get('danhsachsinhviendangthuctap',['as'=>'getdanhsachsinhviendangthuctap','uses'=>'GiangVienHuongDanController@getdanhsachsinhviendangthuctap']);
+
+//gvhd xuất báo cáo
+Route::post('xuatcuoiki/{id}',['as'=>'postxuatcuoiki','uses'=>'GiangVienHuongDanController@postxuatcuoiki']);
+Route::post('xuatgiuaki/{id}',['as'=>'postxuatgiuaki','uses'=>'GiangVienHuongDanController@postxuatgiuaki']);
+
+//gvpt đặt deadline cho công ty nộp đề tài
+Route::post('datdeadline',['as'=>'postdatdeadline','uses'=>'GiangVienPhuTrachController@postdatdeadline']);

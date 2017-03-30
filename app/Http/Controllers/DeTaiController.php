@@ -9,23 +9,41 @@ use App\DeTai;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\DB;
+use App\DeadLine;
+use Carbon\Carbon;
 
 class DeTaiController extends Controller
 {
     public function postThemDeTai(DangKiDeTaiRequest $request){
+        $id = Auth::id(); 
+        $datatime = DB::table('deadline')->where('id_user',$id)->select('thoigian')->get();
+        foreach ($datatime as $value) {
+           $time = $value->thoigian;
+        }
 
-    	$id = Auth::id();      
-    	$detai = new DeTai;
-    	$detai->tendetai = $request->txtName;
-    	$detai->soluong = $request->numSV;
-    	$detai->ngonngu = $request->txtKiNang;
-    	$detai->noidungcv = $request->txtNoiDung;
-    	$detai->tienganh = $request->txtTiengAnh;
-    	$detai->tinhtrang = 0;
-    	$detai->id_user = $id;
-    	$detai->created_at =  new DateTime();
-    	$detai->save();
-        return redirect()->route('getChiTietDeTai');
+        $dateLocale = Carbon::createFromFormat('d-m-Y H:i:s',$time);
+        $dt = $dateLocale->timestamp;
+        $thoiGianHienTai = Carbon::now();
+        $dtht = $thoiGianHienTai->timestamp;
+        // return $dt.'<br>'.$dtht;
+         if($dtht < $dt){
+        $detai = new DeTai;
+        $detai->tendetai = $request->txtName;
+        $detai->soluong = $request->numSV;
+        $detai->ngonngu = $request->txtKiNang;
+        $detai->noidungcv = $request->txtNoiDung;
+        $detai->tienganh = $request->txtTiengAnh;
+        $detai->tinhtrang = 0;
+        $detai->id_user = $id;
+        $detai->created_at =  new DateTime();
+        $detai->save();
+        return redirect()->route('getChiTietDeTai')->with('status', 'Thêm Thành Công!');
+        }
+        else{
+        return redirect()->route('getChiTietDeTai')->with('status', 'Đăng nhập Thất Bại! Đã Quá Hạn Nộp Đề Tài');    
+        }
+    	     
+    	
     	
         
     }
@@ -36,7 +54,9 @@ class DeTaiController extends Controller
                 ->where('detai.id_user','=',$id)
                 ->select('detai.*','users.name')
                 ->paginate(2);
-               
+
+        
+               // return $datacongty;
         return view('layouts/congty/dangkidetai',['data'=>$data]);
     }
     public function getChiTietDeTaiChoDuyet(){
@@ -49,8 +69,10 @@ class DeTaiController extends Controller
         // $detai = DB::table('detai')
         //         ->select('*')
         //         ->paginate(2);
-                // return $data;
-        return view('layouts/giangvienphutrach/danhsachdetaichoduyet',['data'=>$data]);
+                
+                $datacongty = DB::table('users')->where('id_doituong',4)->select('name')->get();
+                // return $datacongty;
+        return view('layouts/giangvienphutrach/danhsachdetaichoduyet',['data'=>$data,'datacongty'=>$datacongty]);
     }
     public function postDuyetDeTai($id){
         DB::table('detai')->where('id',$id)->update(['tinhtrang'=>1]);

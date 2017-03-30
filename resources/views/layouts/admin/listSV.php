@@ -66,18 +66,18 @@
 							<!-- <input type="text" class="form-control" id="age" name="age" placeholder="Vui lòng nhập tuổi" >
 							<span id="helpBlock2" class="help-block">Vui lòng nhập tuổi</span> -->
 							
-							<span class="form_item">
-								<select name="sltCate" class="form-control" ng-model="sinhvien.sltCate" ng-required="true">
-									<option value="0">--- Lớp ---</option>
-									<option value="LTU11A">LTU11A</option>
-									<option value="LTU11B">LTU11B</option>
-									<option value="LTU12A">LTU12A</option>
-									<option value="LTU13A">LTU13A</option>
-									<option value="INPG12">INPG12</option>
-									<option value="VUWIT12B">VUWIT12B</option>
-									
-								</select>
-							</span>
+								<span class="form_item">
+									<select name="sltCate" class="form-control" ng-model="sinhvien.sltCate" ng-required="true">
+										<option value="0">--- Lớp ---</option>
+										<option value="LTU11A">LTU11A</option>
+										<option value="LTU11B">LTU11B</option>
+										<option value="LTU12A">LTU12A</option>
+										<option value="LTU13A">LTU13A</option>
+										<option value="INPG12">INPG12</option>
+										<option value="VUWIT12B">VUWIT12B</option>
+										
+									</select>
+								</span>
 							<span id="helpBlock2" class="help-block" ng-show="frmSinhVien.sltCate.$error.required">Vui lòng chọn lớp</span> 
 						</div>
 					</div>

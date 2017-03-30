@@ -19,19 +19,20 @@ class LoginController extends Controller
     		$data = Auth::user();
     		switch ($data->id_doituong) {
     			case 1:
-    				return "đây là trang của sinh viên";
+    				return redirect()->route('getdiencv');
     				break;
     			case 2:
     				return redirect()->route('getChiTietDeTaiChoDuyet');
     				break;
     			case 3:
-    				return "đây là trang của Giảng Viên hướng dẫn";
+    				return redirect()->route('getdanhsachsinhviendangthuctap');
+                    
     				break;
     			case 4:
                      return redirect()->route('getChiTietDeTai');
     				break;
     			case 5:
-    				return "đây là trang của hướng dẫn doanh nghiệp";
+    				return redirect()->route('getchitietdecuong');
     				break;
     			case 6:
     				return redirect()->route('getDanhSachSV');

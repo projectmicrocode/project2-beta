@@ -5,7 +5,7 @@
 
 
 
-<div class="col-lg-9">
+<div class="col-lg-8">
 		<ul class="nav nav-tabs">
   			<li role="presentation" class="active"><a href="{!!url('chitietdetai')!!}">Đăng Kí Đề Tài</a></li>
 
@@ -56,6 +56,11 @@
                             
             </div>    
           </div>
+          @if (session('status'))
+          <div class="alert alert-success">
+          {{ session('status') }}
+          </div>
+          @endif
           <div class="modal-footer">
           <div class="col-md-3 col-md-offset-5">
             <input type ="submit" name="submit" id="dangkidetai" class="btn btn-primary btn-lg btn-block" value="Đăng Kí">
@@ -64,7 +69,7 @@
         </form>
         
 	</div>
-<div class="col-lg-3">
+<div class="col-lg-4">
 		<div class="panel panel-primary">
   			<div class="panel-heading">
     			<h3 class="panel-title">Danh Sách Đề Tài Đã Gửi</h3>

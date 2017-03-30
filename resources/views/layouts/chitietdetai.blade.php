@@ -7,7 +7,7 @@
 
   			<li role="presentation" "><a href="{{url('chitietdetaichoduyet')}}">Danh sách sinh viên chờ duyệt</a></li>
   			<li role="presentation"><a href="{{url('chitietdetaichoduyet')}}">Danh sách sinh viên đặc biệt</a></li>
-  			<li role="presentation"><a href="">Phân Công</a></li>
+  			<!-- <li role="presentation"><a href="">Phân Công</a></li> -->
 		</ul>
 
 	<!-- </div>

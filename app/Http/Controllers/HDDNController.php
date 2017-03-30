@@ -9,6 +9,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use App\Http\Requests\NopDeCuongRequest;
+use App\DeCuong;
 
 
 class HDDNController extends Controller
@@ -43,5 +45,26 @@ class HDDNController extends Controller
                 ->paginate(2);
         // return $data; 
         return view('layouts/congty/dangkihuongdanhdoanhnghiep',['data'=>$data]);
+    }
+    public function getchitietdecuong(){
+        $id = Auth::id();
+        $data =  DB::table('decuong')
+                ->join('users','users.id','=','decuong.id_user')
+                ->where('users.id',$id)
+                ->select('decuong.*','users.name')
+                ->get();
+
+        return view('layouts/huongdandoanhnghiep/nopdecuongchitiet',['data'=>$data]);
+    }
+    public function postnopdecuong(NopDeCuongRequest $request){
+        $id = Auth::id();
+        $name =$request->file('chondecuong')->getClientOriginalName();
+        $request->file('chondecuong')->move('../storage/decuong',$name);
+        $decuong = new DeCuong;
+        $decuong->tendecuong = $name;
+        $decuong->id_user = $id;
+        $decuong->created_at =  new DateTime();
+        $decuong->save();
+        return redirect()->route('getchitietdecuong');
     }
 }

@@ -24,10 +24,25 @@ p{
 	padding-left: 500px;
 }
 
-.col-lg-9 .content-list{
+.col-lg-8 .content-list{
 	padding-top: 20px;
+
 }
-.col-lg-9 .content-list ul li{
+.col-lg-8 .content-list ul li{
 	list-style-type: none;
 }
-
+.col-lg-8 .form-horizontal .form-group{
+	padding-bottom: 20px;
+}
+.col-lg-8 .modal-footer{
+	padding-top: 50px;
+}
+.col-lg-8 .content-list ul .col-xs-1{
+	padding-left: 0px;
+}
+.col-lg-4{
+padding-bottom: 350px;
+}
+.col-lg-8 .content-list tr td{
+	text-align: center;
+}
