@@ -1,5 +1,11 @@
 .container-fluid {
-	background-image: url('/storage/img/banner.png');
+	background-image: url('../storage/img/banner.png');
+}
+body{
+	background-color: #f8f8f8;
+}
+body .content-list{
+	background-color: white;
 }
 
 .navbar navbar-default {
