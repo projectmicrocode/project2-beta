@@ -1,3 +1,12 @@
+.container-fluid {
+	background-image: url('/storage/img/banner.png');
+}
+
+.navbar navbar-default {
+	height: 60px;
+}
+
+
 .navbar-brand {
 	padding-top: 10px;
 }
@@ -46,3 +55,18 @@ padding-bottom: 350px;
 .col-lg-8 .content-list tr td{
 	text-align: center;
 }
+ .footer-bottom {
+ 	background: #337ab7;
+ 	height: 60px;
+ 	position: fixed;
+ 	bottom: 0;
+ 	right: 0;
+ 	left: 0;
+ 	width: 100%;
+ }
+
+ .col-lg-12 {
+ 	position: relative;
+ 	top: 10px;
+ 	color: #FFFFFF;
+ }
