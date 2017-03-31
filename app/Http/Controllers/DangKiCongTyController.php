@@ -30,6 +30,6 @@ class DangKiCongTyController extends Controller
     	$user->id_doituong = 4;
     	$user->created_at =  new DateTime();
     	$user->save();
-    	return 'them thanh cong!';
+    	return redirect()->back()->with('status', 'Đăng Kí Thành Công!');
     }
 }

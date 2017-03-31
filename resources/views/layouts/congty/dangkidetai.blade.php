@@ -11,7 +11,7 @@
 
   			<li role="presentation" "><a href="{!!url('chitiethddn')!!}">Đăng Kí Hướng Dẫn Doanh Nghiệp</a></li>
   			<li role="presentation"><a href="{!!url('chitietsinhviendacbiet')!!}">Đăng Kí Sinh Viên Trực Tiếp</a></li>
-  			<li role="presentation"><a href="{!!url('getPhanCongSinhVien')!!}">Phân Công</a></li>
+  			<li role="presentation"><a href="{!!url('danhsachsinhvienphancong')!!}">Phân Công</a></li>
 		</ul>
     <br>
    
@@ -57,7 +57,13 @@
             </div>    
           </div>
           <div class  ="form-group">
-             <label for  ="inputEmail3" class="col-sm-3 control-label">Deadline Nộp Đề Tài:</label>
+             <label class="col-sm-3 control-label">Deadline Nộp Đề Tài:</label>
+             <label class="col-sm-3 ">
+             <h4> @foreach($datadl as $val)
+                  {{$val->thoigian}}
+                @endforeach</h4>
+               
+             </label>
           </div>
           @if (session('status'))
           <div class="alert alert-success">

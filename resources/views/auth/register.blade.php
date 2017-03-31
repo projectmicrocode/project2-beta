@@ -77,7 +77,11 @@
                                 @endif
                             </div>
                         </div>
-
+                                @if (session('status'))
+                                <div class="alert alert-success">
+                                {{ session('status') }}
+                                </div>
+                                @endif
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

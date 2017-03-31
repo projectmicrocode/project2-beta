@@ -9,7 +9,7 @@
 
   			<li role="presentation" class="active"><a href="{!!url('chitiethddn')!!}">Đăng Kí Hướng Dẫn Doanh Nghệp</a></li>
   			<li role="presentation"><a href="{!!url('chitietsinhviendacbiet')!!}">Đăng Kí Sinh Viên Trực Tiếp</a></li>
-  			<li role="presentation"><a href="{!!url('getPhanCongSinhVien')!!}">Phân Công</a></li>
+  			<li role="presentation"><a href="{!!url('danhsachsinhvienphancong')!!}">Phân Công</a></li>
 		</ul>
     <br>
    

@@ -13,19 +13,16 @@ class GiangVienPhuTrachController extends Controller
 {
     public function postdatdeadline(Request $request){
     	
-    	$data = DB::table('users')->where('name',$request->sltCongTy)->select('id')->get();
-    	// $datadl = DB::table('deadline')->select
-    	foreach ($data as $value) {
-    		 $id = $value->id;
-    	}
+    	
 
     	$deadline = new DeadLine;
     	$deadline->thoigian = $request->txtdeadline;
-    	$deadline->id_user = $id;
+    	$deadline->id_user = 7;
+        $deadline->loai = 1;
     	$deadline->created_at = new DateTime();
     	$deadline->save();
     	
-    	return "Thêm Thành Công!";
+    	return redirect()->route('getChiTietDeTaiChoDuyet')->with('status', 'Đặt Thành Công!');
     
     }
 }

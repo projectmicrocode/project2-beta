@@ -113,3 +113,9 @@ Route::post('xuatgiuaki/{id}',['as'=>'postxuatgiuaki','uses'=>'GiangVienHuongDan
 
 //gvpt đặt deadline cho công ty nộp đề tài
 Route::post('datdeadline',['as'=>'postdatdeadline','uses'=>'GiangVienPhuTrachController@postdatdeadline']);
+
+//công ty phân công sinh viên về hướng dẫn doanh nghiệp
+Route::get('danhsachsinhvienphancong',['as'=>'getdanhsachsinhvienphancong','uses'=>'SinhVienController@getdanhsachsinhvienphancong'])->middleware('auth');
+
+//công ty xuất cv sinh viên
+Route::post('xuatcv/{id}',['as'=>'postxuatcv','uses'=>'SinhVienController@postxuatcv']);

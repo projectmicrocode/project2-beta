@@ -107,22 +107,11 @@
 							<div style="padding-left: 40px" class  ="col-sm-12"><span id="helpBlock2" class="help-block" >Vui lòng nhập theo mẫu DD-MM/-YYY H:M:S </span></div>
 							</div>
 							
-							<div class="form-group">
-								<label for  ="inputEmail3" class="col-sm-4 control-label">Công Ty</label>
-								<div class="col-sm-7">
-									
-									<select name="sltCongTy" class="form-control" >
-										<option value="0">Công Ty</option>
-										@foreach($datacongty as $val)
-											<option value="{{$val->name}}">{{$val->name}}</option>
-										@endforeach
-										
-										
-									</select>
-								
+								@if (session('status'))
+								<div class="alert alert-success">
+								{{ session('status') }}
 								</div>
-								
-							</div>
+								@endif
 							
 							
 							

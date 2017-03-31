@@ -55,9 +55,11 @@ class DeTaiController extends Controller
                 ->select('detai.*','users.name')
                 ->paginate(2);
 
-        
+        $datadl = DB::table('deadline')->where('loai',1)->select('thoigian')->get();
+
+       
                // return $datacongty;
-        return view('layouts/congty/dangkidetai',['data'=>$data]);
+        return view('layouts/congty/dangkidetai',['data'=>$data,'datadl'=>$datadl]);
     }
     public function getChiTietDeTaiChoDuyet(){
          // $id = Auth::id(); 

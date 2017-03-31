@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CVRequest;
 use App\CV;
 use App\NguyenVong;
+use Excel;
 
 
 class SinhVienController extends Controller
@@ -106,26 +107,39 @@ class SinhVienController extends Controller
        
 
         
-
-        // if($nv1 == 0){
-            
-        //     return "false!";
-        // }
-        // else if(($nv1 == $nv2) || ($nv1 == $nv3) || ($nv2 == $nv3) ){
-        //        return "false!";
-        // }
-        // else{
-            $nguyenvong = new NguyenVong;
-            $nguyenvong->nguyenvong1 = $request->nguyenvong1;
-            $nguyenvong->nguyenvong2 = $request->nguyenvong2;
-            $nguyenvong->nguyenvong3 = $request->nguyenvong3;
-            $nguyenvong->created_at = new DateTime();
-            $nguyenvong->save();
-             return redirect()->route('getdangkinguyenvong')->with('status', 'Thêm Thành Công');
-        //     return "true!";
-        // }
-
-   
+        if($request->nguyenvong1 =='0'){
+                return redirect()->route('getdangkinguyenvong')->with('status', 'Đăng Kí Thất Bại! Bạn Phải Đăng Kí Nguyện Vọng 1');
+            }
+            else if($request->nguyenvong1 == $request->nguyenvong2 
+                    || $request->nguyenvong1 == $request->nguyenvong3
+                    ){
+                return redirect()->route('getdangkinguyenvong')->with('status', 'Tồn Tại Hai Nguyện Vọng Trùng Nhau');
+            }
+            else if($request->nguyenvong1 !='0' && $request->nguyenvong2 == $request->nguyenvong3 && $request->nguyenvong2 != '0'&& $request->nguyenvong3!='0'){
+                return redirect()->route('getdangkinguyenvong')->with('status', 'Tồn Tại Hai Nguyện Vọng Trùng Nhau');
+            }
+            else if($request->nguyenvong2 == '0'&& $request->nguyenvong3=='0'){
+                $nguyenvong = new NguyenVong;
+                $nguyenvong->nguyenvong1 = $request->nguyenvong1;
+                $nguyenvong->id_user = $id;
+                $nguyenvong->created_at = new DateTime();
+                $nguyenvong->save();
+                return redirect()->route('getdangkinguyenvong')->with('status', 'Thêm Thành Công');
+            }
+            else {
+                 $nguyenvong = new NguyenVong;
+                 $nguyenvong->nguyenvong1 = $request->nguyenvong1;
+                 $nguyenvong->nguyenvong2 = $request->nguyenvong2;
+                 $nguyenvong->nguyenvong3 = $request->nguyenvong3;
+                $nguyenvong->id_user = $id;
+                 $nguyenvong->created_at = new DateTime();
+                 $nguyenvong->save();
+                 return redirect()->route('getdangkinguyenvong')->with('status', 'Thêm Thành Công');
+            }
+               
+        
+           
+       
         
     }
     public function getnopbaocao(){
@@ -171,6 +185,42 @@ class SinhVienController extends Controller
         $cv->id_user = $data->id;
         $cv->created_at = new DateTime();
         $cv->save();
-        return redirect()->route('')->with('status', 'Thêm Thành Công!');
+        return redirect()->route('getdiencv')->with('status', 'Thêm Thành Công!');
+    }
+    public function getdanhsachsinhvienphancong(){
+         $data = DB::table('users')
+        ->select('users.*')->get();
+        return view('layouts/congty/phancongsinhvien',['data'=>$data]);
+    }
+    public function postxuatcv($id){
+        $cv = CV::select('ten','mssv','diachi','kinang','kinangmem','ngoaingu')->where('id_user',$id)->get();
+        foreach ($cv as $value) {
+           $name =  $value->ten;
+           $mssv = $value->mssv;
+        }
+    $filename = $name."_".$mssv;
+             
+        Excel::create( $filename,function($excel)use($cv)
+            {
+                $excel->sheet('sinhvien',function($sheet)use($cv)
+                    {           
+                        $sheet->mergeCells('A2:F3');           
+                        $data = array(array('CV SINH VIEN'),
+                        array(''));
+                        $sheet->fromArray($data);
+                        $sheet->cell('A2',function($cell){
+                        $cell->setAlignment('center');
+                        $cell->setValignment('center');
+                        $cell->setFont(array(
+                            'size'       => '16',
+                            'bold'       =>  true
+                            ));
+                        }); 
+                        $sheet->fromArray($cv);          
+                    }
+                );
+            }
+         ) ->export('xls');
+        
     }
 }
