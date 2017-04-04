@@ -116,6 +116,11 @@ Route::post('datdeadline',['as'=>'postdatdeadline','uses'=>'GiangVienPhuTrachCon
 
 //công ty phân công sinh viên về hướng dẫn doanh nghiệp
 Route::get('danhsachsinhvienphancong',['as'=>'getdanhsachsinhvienphancong','uses'=>'SinhVienController@getdanhsachsinhvienphancong'])->middleware('auth');
+Route::post('chonhddn/{id}',['as'=>'postchonhddn','uses'=>'SinhVienController@postchonhddn']);
 
 //công ty xuất cv sinh viên
 Route::post('xuatcv/{id}',['as'=>'postxuatcv','uses'=>'SinhVienController@postxuatcv']);
+
+//chi tiết sinh viên đã duyệt
+
+Route::post('chitietsvdaduyet/{id}',['as'=>'postchitietsvdaduyet','uses'=>'GiangVienPhuTrachController@postchitietsvdaduyet']);

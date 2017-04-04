@@ -13,8 +13,7 @@
   			
   			
 		</ul>
-		<br>
-		<br>
+		
 		@include('layouts.error.error')
 		<div class="content-list" >
 			<form name  ="frmSinhVien" class="form-horizontal" action="themcv" method="POST">
@@ -91,16 +90,20 @@
 <div class="col-lg-4">
 		<div class="panel panel-primary">
   			<div class="panel-heading">
-    			<h3 class="panel-title">Thông Tin</h3>
+    			<h3 class="panel-title">Thông Tin CV</h3>
   			</div>
   			<div class="panel-body">
-				
-  						
-     
-
-  					
-        
-           
+				@foreach ($data as $retrieve)
+						
+							<ul class="list-group">
+								<li class="list-group-item"><span>Họ Và Tên: </span>{{$retrieve->ten}}</li>
+								<li class="list-group-item"><span>Mssv: </span>{{$retrieve->mssv}}</li>
+								<li class="list-group-item"><span>Lớp: </span>{{$retrieve->lop}}</li>
+								<li class="list-group-item"><span>Địa Chỉ: </span>{{$retrieve->diachi}}</li>
+								<li class="list-group-item"><span>Thời gian đăng: </span>{{$retrieve->created_at}}</li>
+							</ul>
+						
+					@endforeach   
 		</div>
 </div>
 @endsection

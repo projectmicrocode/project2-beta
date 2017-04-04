@@ -29,9 +29,10 @@ class HDDNController extends Controller
     	$user = new User;
     	$user->name = $request->txtName;
     	$user->email = $request->txtEmail;
-    	$user->password = $request->txtPass;
+    	$user->password = bcrypt($request->txtPass);
     	$user->id_doituong = 5;
         $user->tinhtrang = 0;
+        $user->phancong = 0;
     	$user->created_at =  new DateTime();
     	$user->save();
 

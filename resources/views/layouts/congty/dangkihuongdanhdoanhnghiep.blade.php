@@ -79,13 +79,18 @@
   			</div>
   			<div class="panel-body">
     		@foreach($data as $val)
-          <ul>
-            <li><span>Họ và tên: </span>{{$val->hoten}}</li>
-            <li><span>Email: </span>{{$val->email}}</li>
-            <li><span>Tên Công Ty: </span>{{$val->name}}</li>
-            <li><span>Thời gian được đăng kí: </span>{{$val->created_at}}</li>
-
-          </ul>
+         <ul class="list-group">
+                    <li class="list-group-item">
+                     <ul style="padding-left: 0px">
+                     <li><span>Họ và tên: </span>{{$val->hoten}}</li>
+                     <li><span>Email: </span>{{$val->email}}</li>
+                     <li><span>Tên Công Ty: </span>{{$val->name}}</li>
+                     <li><span>Thời gian được đăng kí: </span>{{$val->created_at}}</li>
+                     
+                     </ul>
+                    </li>
+                  </ul>
+          
         @endforeach
   			</div>
          <div class="modal-footer">{{$data ->render()}}</div>

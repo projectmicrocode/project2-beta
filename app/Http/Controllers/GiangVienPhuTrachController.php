@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\DeadLine;
 use DateTime;
+use App\User;
 
 class GiangVienPhuTrachController extends Controller
 {
@@ -24,5 +25,12 @@ class GiangVienPhuTrachController extends Controller
     	
     	return redirect()->route('getChiTietDeTaiChoDuyet')->with('status', 'Đặt Thành Công!');
     
+    }
+
+    public function postchitietsvdaduyet($id){
+
+        $data = DB::table('users')->where('id',$id)->where('tinhtrang',1)->select("*")->get();
+        // return $data;
+        return view('layouts/chitietsinhviendaduyet',['data'=>$data]);
     }
 }

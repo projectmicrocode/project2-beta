@@ -10,40 +10,45 @@ use DateTime;
 use App\SinhVien;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class DangKiSinhVienDacBietController extends Controller
 {
 	public function getDanhSachDeTaiDacBiet(){
-		$data = DeTai::select('tendetai')->where('tinhtrang',1)->get();
+		$id = Auth::id();
+		$data = DeTai::select('tendetai')->where('tinhtrang',1)->where('id_user',$id)->get();
 		// return $data;
     	return view('layouts/congty/dangkisinhvientructiep',['data'=>$data]);
 	}
 	public function postDangKiSVTrucTiep(DangKiSinhVienDacBietRequest $request){
-		$sinhvien = SinhVien::select('hoten','mssv')->get();
+		$sinhvien = User::select('name','email','tinhtrang')->where('id_doituong',1)->where('tinhtrang',0)->get();
 		$count=0;
         foreach ($sinhvien as  $val) {
         	# code...
-        	if(($val['hoten'] == $request->txtName) && ($val['mssv'] == $request->txtMssv)){
+        	if(($val['name'] == $request->txtName) && ($val['email'] == $request->txtEmail) ){
         	$count++;
         }
         }
          if($count == 1){
             // return redirect()->route('addSinhVienDacBiet');
+           
+            
             $id = Auth::id();
-           $svdb = new SinhVienDacBiet;
+           	$svdb = new SinhVienDacBiet;
 			$svdb->hoten = $request->txtName;
-			$svdb->mssv = $request->txtMssv;
+			$svdb->email = $request->txtEmail;
 			$svdb->detai = $request->sltDeTai;
-			$svdb->tinhtrang = 0;
+			$svdb->tinhtrang = 1;
 			$svdb->id_user = $id;
 			$svdb->created_at = new DateTime();
             $svdb->save();
+            DB::table('users')->where('email',$request->txtEmail)->update(['tinhtrang'=>1]);
             	
             return redirect()->route('getChiTietSVDacBiet')->with('status', 'Thành Công!');
 
         }
         else{
-        	return redirect()->back()->with('status', 'Thêm Thất Bại! Sinh Viên Không Tồn Tại');
+        	return redirect()->back()->with('status', 'Thêm Thất Bại! Sinh Viên Không Tồn Tại Hoặc Đã Chọn Được Cơ Sở Thực Tập');
         }
 
 
@@ -51,8 +56,8 @@ class DangKiSinhVienDacBietController extends Controller
 }
 	public function getChiTietSVDacBiet(){
 		$id = Auth::id();
-		$datadetai = DeTai::select('tendetai')->where('tinhtrang',1)->get();
-		$datasv = DB::table('sinhviendacbiet')->where('id_user',$id)->select('hoten','mssv','detai')->paginate(2);
+		$datadetai = DeTai::select('tendetai')->where('tinhtrang',1)->where('id_user',$id)->get();
+		$datasv = DB::table('sinhviendacbiet')->where('id_user',$id)->select('hoten','email','detai')->paginate(2);
 		
 
 		

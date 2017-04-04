@@ -15,9 +15,9 @@
   			
   			
 		</ul>
-		<br>
+		
 		@include('layouts.error.error')
-		<br>
+	
 
 		<div class="content-list" >
 			<form name  ="frmSinhVien" class="form-horizontal" action="nopbaocao" method="POST" enctype="multipart/form-data">

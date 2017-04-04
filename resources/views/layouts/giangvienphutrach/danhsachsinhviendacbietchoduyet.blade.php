@@ -22,26 +22,21 @@
 			<table class="table table-bordered">
 				<tr class="danger">
 					<td class="active">Họ và Tên</td>
-					<td class="active">Mssv</td>
+					<td class="active">Email</td>
 					<td class="active">Đề tài</td>
 					<td class="active">Công ty</td>
-					<td class="active	">Duyệt</td>
+					
 				</tr>
 				@foreach($datacd as $val)
-					@if($val->tinhtrang==0)
+					
 					<tr class="success">
 					<td class="">{{$val->hoten}}</td>
-					<td class="">{{$val->mssv}}</td>
+					<td class="">{{$val->email}}</td>
 					<td class="">{{$val->detai}}</td>
 					<td class="">{{$val->name}}</td>
-					<td >
-						<form action="duyetsinhviendacbiet/{{$val->id}}" method="POST">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							<button style="width: 60px" class="btn btn-primary" href="#" id="btnDuyet">Duyệt</button>
-						</form>
-					</td>
+					
 				</tr>
-					@endif
+					
 				@endforeach
 			</table>
 			<div class="modal-footer">{{$datacd ->render()}}</div>
@@ -69,12 +64,8 @@
   					@endif	
 				@endforeach
   				
-  						
-     
-
-  					
-        
-           
+ 
 		</div>
+		<div class="modal-footer">{{$data ->render()}}</div>
 </div>
 @endsection

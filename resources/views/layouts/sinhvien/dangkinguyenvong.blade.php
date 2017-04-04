@@ -15,9 +15,7 @@
   			
   			
 		</ul>
-		<br>
-		<br>
-
+		
 		<div class="content-list" >
 			<form name  ="frmSinhVien" class="form-horizontal" action="themnguyenvong" method="POST">
 					<input type ="hidden" name="_token" value="{{ csrf_token() }}">
@@ -29,7 +27,7 @@
 							<select name="nguyenvong1" class="form-control" >
 							<option value="0">--- Nguyện Vọng ---</option>	
 								@foreach($data as $val)
-									<option value="{{$val->tendetai}}">{{$val->tendetai}} - {{$val->name}}</option>
+									<option value="{{$val->tendetai}} - {{$val->name}}">{{$val->tendetai}} - {{$val->name}}</option>
 								@endforeach
 							</select>
 						@else
@@ -44,7 +42,7 @@
 								<select name="nguyenvong2" class="form-control" ng-model="sinhvien.sltCate" ng-required="true">
 								<option value="0">--- Nguyện Vọng ---</option>	
 									@foreach($data as $val)
-										<option value="{{$val->tendetai}}">{{$val->tendetai}} - {{$val->name}}}</option>
+										<option value="{{$val->tendetai}} - {{$val->name}}">{{$val->tendetai}} - {{$val->name}}</option>
 									@endforeach
 								</select>
 							@else
@@ -61,7 +59,7 @@
 								<select name="nguyenvong3" class="form-control" ng-model="sinhvien.sltCate" ng-required="true">
 								<option value="0">--- Nguyện Vọng ---</option>	
 									@foreach($data as $val)
-										<option value="{{$val->tendetai}}">{{$val->tendetai}} - {{$val->name}}</option>
+										<option value="{{$val->tendetai}} - {{$val->name}}">{{$val->tendetai}} - {{$val->name}}</option>
 									@endforeach
 								</select>
 							@else
@@ -92,16 +90,19 @@
 <div class="col-lg-4">
 		<div class="panel panel-primary">
   			<div class="panel-heading">
-    			<h3 class="panel-title">Thông Tin</h3>
+    			<h3 class="panel-title">Nguyện Vọng Đã Đăng Kí</h3>
   			</div>
   			<div class="panel-body">
-				
-  						
-     
-
-  					
-        
-           
-		</div>
+				@foreach ($datanv as $retrieve)
+						
+							<ul class="list-group">
+								<li class="list-group-item"><span>Nguyện Vọng 1: </span>{{$retrieve->nguyenvong1}}</li>
+								<li class="list-group-item"><span>Nguyện Vọng 2: </span>{{$retrieve->nguyenvong2}}</li>
+								<li class="list-group-item"><span>Nguyện Vọng 3: </span>{{$retrieve->nguyenvong3}}</li>
+								
+							</ul>
+						
+					@endforeach  
+			</div>
 </div>
 @endsection

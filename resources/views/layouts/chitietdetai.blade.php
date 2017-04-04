@@ -5,8 +5,8 @@
 		<ul class="nav nav-tabs">
   			<li role="presentation"><a href="{{url('chitietdetaichoduyet')}}">Danh sách sinh viên chờ duyệt</a></li>
 
-  			<li role="presentation" "><a href="{{url('chitietdetaichoduyet')}}">Danh sách sinh viên chờ duyệt</a></li>
-  			<li role="presentation"><a href="{{url('chitietdetaichoduyet')}}">Danh sách sinh viên đặc biệt</a></li>
+  			<li role="presentation" "><a href="{{url('danhsachsinhvienchoduyet')}}">Danh sách sinh viên chờ duyệt</a></li>
+  			<li role="presentation"><a href="{{url('danhsachsinhviendacbietchoduyet')}}">Danh sách sinh viên đặc biệt</a></li>
   			<!-- <li role="presentation"><a href="">Phân Công</a></li> -->
 		</ul>
 

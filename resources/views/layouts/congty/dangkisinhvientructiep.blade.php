@@ -30,9 +30,9 @@
             </div >
           </div>
           <div class  ="form-group">
-            <label for  ="inputEmail3" class="col-sm-3 control-label">Mã số sinh viên</label>
+            <label for  ="inputEmail3" class="col-sm-3 control-label">Email</label>
             <div class  ="col-sm-9">
-            <input type ="text" class="form-control" id="mss" name="txtMssv" placeholder="Vui lòng nhập số lượng" >
+            <input type ="email" class="form-control" id="Email" name="txtEmail" placeholder="Vui lòng Email Sinh viên" >
                             
             </div>
           </div>
@@ -82,11 +82,17 @@
   			<div class="panel-body">
 
         @foreach($datasv as $val)
-    	   <ul>
-            <li><span>Họ và tên: </span>{{$val->hoten}}</li>
-            <li><span>Mã số Sinh Viên: </span>{{$val->mssv}}</li>
-            <li><span>Đề Tài: </span>{{$val->detai}}</li>
-           </ul>
+         <ul class="list-group">
+                    <li class="list-group-item">
+                     <ul style="padding-left: 0px">
+                      <li><span>Họ và tên: </span>{{$val->hoten}}</li>
+                      <li><span>Mã số Sinh Viên: </span>{{$val->email}}</li>
+                      <li><span>Đề Tài: </span>{{$val->detai}}</li>
+                     
+                     </ul>
+                    </li>
+                  </ul>
+    	  
         @endforeach
   			</div>
 

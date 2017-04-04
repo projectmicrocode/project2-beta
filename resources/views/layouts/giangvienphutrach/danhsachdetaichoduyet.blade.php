@@ -15,7 +15,8 @@
   			<li role="presentation"><a href="{{url('danhsachsinhviendacbietchoduyet')}}">Danh sách sinh viên đặc biệt</a></li>
   			
 		</ul>
-
+		<br>
+		<br>
 		<div class="content-list" >
 		@foreach ($data as $retrieve)
         @if($retrieve->tinhtrang == 0)
@@ -94,37 +95,41 @@
 					<h3 class="panel-title">Deadline Công Ty Nộp Đề Tài</h3>
 				</div>
 				<div class="panel-body">
-							<form name  ="frmSinhVien" class="form-horizontal" action="datdeadline" method="POST">
-							<input type ="hidden" name="_token" value="{{ csrf_token() }}">
-							<div class="content-panel">
+					<form name  ="frmSinhVien" class="form-horizontal" action="datdeadline" method="POST">
+						<input type ="hidden" name="_token" value="{{ csrf_token() }}">
+						<div class="content-panel">
 							<div class  ="form-group">
-							<label for  ="inputEmail3" class="col-sm-4 control-label">Thời Gian</label>
-							<div class  ="col-sm-7">
-							<input type ="text" class="form-control" id="txtdeadline" name="txtdeadline" placeholder="DD-MM-YYYY H:M:S" />
-							
-							</div >
-
-							<div style="padding-left: 40px" class  ="col-sm-12"><span id="helpBlock2" class="help-block" >Vui lòng nhập theo mẫu DD-MM/-YYY H:M:S </span></div>
-							</div>
-							
+								<label for  ="inputEmail3" class="col-sm-4 control-label">Thời Gian</label>
+								<div class  ="col-sm-7">
+									<input type ="text" class="form-control" id="txtdeadline" name="txtdeadline" placeholder="DD-MM-YYYY H:M:S" />
+								</div >
+								
+								<div style="padding-left: 40px" class  ="col-sm-12"><span id="helpBlock2" class="help-block" >Vui lòng nhập theo mẫu DD-MM/-YYY H:M:S </span></div>
+								</div>
+								
 								@if (session('status'))
 								<div class="alert alert-success">
 								{{ session('status') }}
 								</div>
 								@endif
-							
-							
-							
-							
-							
-							<div class="modal-footer">
-							
-							<input type ="submit" name="submit" id="dangkidetai" class="btn btn-primary btn-lg btn-block" value="Đặt">
-							
-							</div>     
-							</form>
+								
+								
+								
+								
+								
+								<div class="modal-footer">
+								
+								<input type ="submit" name="submit" id="dangkidetai" class="btn btn-primary btn-lg btn-block" value="Đặt">
+								
+								</div>     
+					</form>
 				</div>
 			</div>
+			s
+
+
+
+
 </div>
 
 

@@ -20,7 +20,7 @@
         			<img  src="{{asset('/storage/img/logo.png')}}"" style="height:100%">
 
       			</a>
-      			<a class="navbar-brand" href="#" >QT P2_04</a>
+      			<a class="navbar-brand" href="#" >QUY TRÌNH THỰC TẬP</a>
 
     		</div>
         
@@ -55,14 +55,11 @@
 </div>
 	
 
-<br>
-<br>
-<br>
-<br>
+
 <div class="footer-bottom">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; QT P2_04 2017</p>
+                    <p>Copyright &copy; QTTT P2_04 2017 SIE LTU12A</p>
                 </div>
             </div>
             <!-- /.row -->

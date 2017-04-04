@@ -16,16 +16,16 @@ class DeTaiController extends Controller
 {
     public function postThemDeTai(DangKiDeTaiRequest $request){
         $id = Auth::id(); 
-        $datatime = DB::table('deadline')->where('id_user',$id)->select('thoigian')->get();
+        $datatime = DB::table('deadline')->select('thoigian')->get();
         foreach ($datatime as $value) {
            $time = $value->thoigian;
         }
-
+       
         $dateLocale = Carbon::createFromFormat('d-m-Y H:i:s',$time);
         $dt = $dateLocale->timestamp;
         $thoiGianHienTai = Carbon::now();
         $dtht = $thoiGianHienTai->timestamp;
-        // return $dt.'<br>'.$dtht;
+       
          if($dtht < $dt){
         $detai = new DeTai;
         $detai->tendetai = $request->txtName;

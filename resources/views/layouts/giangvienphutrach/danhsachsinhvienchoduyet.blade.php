@@ -14,7 +14,8 @@
   			<li role="presentation"><a href="{{url('danhsachsinhviendacbietchoduyet')}}">Danh sách sinh viên đặc biệt</a></li>
   			
 		</ul>
-
+		<br>
+		<br>
 		<div class="content-list" >
 			<table class="table table-bordered">
 				<tr class="danger">
@@ -61,8 +62,16 @@
 				@foreach($data as $val)
 				@if($val->id_doituong==1)
 				@if($val->tinhtrang==1)
-						<ul class ="list-group">
-							<li class ="list-group-item"><span>Họ Tên: </span>{{$val->name}}</li>
+						<ul class ="list-group" style="padding-left: 10px">
+
+
+							<li class ="">
+							<form action="chitietsvdaduyet/{{$val->id}}" method="POST" role="form">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<button style="width: 300px" type="submit" class="btn btn-info"><span>Họ Tên: </span>{{$val->name}}</button>
+							</form>
+							
+							</li>
 							
 							
 						

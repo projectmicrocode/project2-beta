@@ -34,6 +34,8 @@ class GiangVienController extends Controller
     	}else{
     	$user->id_doituong = 2;
     	}
+        $user->tinhtrang = 0;
+        $user->phancong = 0;
     	$user->created_at =  new DateTime();
     	$user->save();
     }

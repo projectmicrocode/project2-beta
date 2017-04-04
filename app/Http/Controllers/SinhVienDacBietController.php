@@ -18,12 +18,11 @@ class SinhVienDacBietController extends Controller
 		$data = DB::table('sinhviendacbiet')
 		->join('users','users.id','=','sinhviendacbiet.id_user')
 		// ->where('id_user',16)
-		->select('sinhviendacbiet.*','users.name')
-		->get();
+		->select('sinhviendacbiet.*','users.name')->paginate(2);
 		$datacd = DB::table('sinhviendacbiet')
 		->join('users','users.id','=','sinhviendacbiet.id_user')
 		// ->where('id_user',16)
-		->select('sinhviendacbiet.*','users.name')->paginate(4);
+		->select('sinhviendacbiet.*','users.name')->paginate(5);
 		// ->get();
 		
 

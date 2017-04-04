@@ -28,6 +28,8 @@ class DangKiCongTyController extends Controller
     	$user->email = $request->email;
     	$user->password = bcrypt($request->password);
     	$user->id_doituong = 4;
+        $user->tinhtrang = 0;
+        $user->phancong = 0;
     	$user->created_at =  new DateTime();
     	$user->save();
     	return redirect()->back()->with('status', 'Đăng Kí Thành Công!');

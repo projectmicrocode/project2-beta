@@ -17,6 +17,7 @@ use App\Http\Requests\CVRequest;
 use App\CV;
 use App\NguyenVong;
 use Excel;
+use App\PhanCong;
 
 
 class SinhVienController extends Controller
@@ -41,6 +42,7 @@ class SinhVienController extends Controller
     	$user->password = bcrypt($request->txtMssv);
     	$user->id_doituong = 1;
         $user->tinhtrang = 0;
+        $user->phancong = 0;
     	$user->created_at =  new DateTime();
     	$user->save();
     }
@@ -89,17 +91,23 @@ class SinhVienController extends Controller
         return redirect()->route('getdanhsachsinhvienchoduyet');
     }
     public function getdiencv(){
-        return view('layouts/sinhvien/cv');
+        $id = Auth::id();
+        $data = DB::table('cv')->where('id_user',$id)->select('*')->get();
+
+
+        return view('layouts/sinhvien/cv',['data'=>$data]);
     }
     public function getdangkinguyenvong(){
+        $id = Auth::id();
         $data = DB::table('detai')
         ->join('users','users.id','=','detai.id_user')
         ->where('detai.tinhtrang',1)
         ->select('detai.*','users.name')->get();
         // return $data;
+        $datanv = DB::table('nguyenvong')->where('id_user',$id)->select('*')->get();
         
         // return view('layouts/congty/dangkisinhvientructiep',['data'=>$data]);
-         return view('layouts/sinhvien/dangkinguyenvong',['data'=>$data]);
+         return view('layouts/sinhvien/dangkinguyenvong',['data'=>$data,'datanv'=>$datanv]);
     }
     public function postthemnguyenvong(Request $request){
 
@@ -188,9 +196,34 @@ class SinhVienController extends Controller
         return redirect()->route('getdiencv')->with('status', 'Thêm Thành Công!');
     }
     public function getdanhsachsinhvienphancong(){
+        $id = Auth::id();
          $data = DB::table('users')
         ->select('users.*')->get();
-        return view('layouts/congty/phancongsinhvien',['data'=>$data]);
+        $datahddn = DB::table('huongdandoanhnghiep')->where('id_user',$id)->select('hoten')->get();
+        $dataphancong = DB::table('phancong')->select('*')->get();
+        
+        
+        // return $datasv;
+        return view('layouts/congty/phancongsinhvien',['data'=>$data,'datahddn'=>$datahddn,'dataphancong'=>$dataphancong]);
+    }
+    public function postchonhddn(Request $request,$id){
+        if($request->sltHddn == '0'){
+            return redirect()->back()->with('status', 'Lỗi! Phải Chọn Người Hướng Dẫn Doanh Nghiệp');
+        }else
+        {
+           
+            $phancong = new PhanCong;
+            $phancong->id_user_sv = $id;
+            $phancong->hotenhddn= $request->sltHddn;
+            $phancong->created_at = new DateTime();
+            $phancong->save();
+
+            DB::table('users')->where('id',$id)->update(['phancong'=>1]);
+            return redirect()->route('getdanhsachsinhvienphancong')->with('status', 'Phân Công Thành Công!');
+        }
+        
+        
+       
     }
     public function postxuatcv($id){
         $cv = CV::select('ten','mssv','diachi','kinang','kinangmem','ngoaingu')->where('id_user',$id)->get();
@@ -198,7 +231,7 @@ class SinhVienController extends Controller
            $name =  $value->ten;
            $mssv = $value->mssv;
         }
-    $filename = $name."_".$mssv;
+        $filename = $name."_".$mssv;
              
         Excel::create( $filename,function($excel)use($cv)
             {

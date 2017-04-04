@@ -26,7 +26,7 @@ class DangKiSinhVienDacBietRequest extends FormRequest
         return [
             
             'txtName'=>'required',
-            'txtMssv'=>'required|unique:sinhviendacbiet,mssv',
+            'txtEmail'=>'required|unique:sinhviendacbiet,email',
             'sltDeTai'=>'required',
             
             
@@ -38,8 +38,8 @@ class DangKiSinhVienDacBietRequest extends FormRequest
         return [
             'txtName.required' => 'Vui lòng nhập họ tên',
             // 'txtName.unique'  => 'Đề tài đã tồn tại',
-            'txtMssv.required'=>'Vui lòng nhập email',
-            'txtMssv.unique'=>'mssv đã tồn tại',
+            'txtEmail.required'=>'Vui lòng nhập email',
+            'txtEmail.unique'=>'Email đã tồn tại',
             // 'txtDinhHuong.required'=>'Vui lòng nhập định hướng',
             
            
