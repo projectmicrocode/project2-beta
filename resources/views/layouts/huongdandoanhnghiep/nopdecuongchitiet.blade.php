@@ -25,7 +25,38 @@
 					<input type ="hidden" name="_token" value="{{ csrf_token() }}">
 					
 
-					<input style="padding-bottom: 50px" type ="file" class="" id="chondecuong" name="chondecuong" value="Chọn file" >
+					<div class  ="form-group">
+						<label for  ="inputEmail3" class="col-sm-3 control-label">Nội Dung Công việc</label>
+						<div class  ="col-sm-9">
+							<input type ="text" class="form-control" id="noidung" name="txtnoidung" placeholder="Vui lòng nhập nội dung" />
+							
+						</div>
+					</div>
+					<div class  ="form-group">
+						<label for  ="inputEmail3" class="col-sm-3 control-label">Yêu Cầu Đầu Ra</label>
+						<div class  ="col-sm-9">
+							<input type ="text" class="form-control" id="yeucaudaura" name="txtyeucaudaura" placeholder="Vui lòng nhập yêu cầu đầu ra" />
+							
+						</div>
+					</div>
+					<div class  ="form-group">
+						<label for  ="inputEmail3" class="col-sm-3 control-label">Thời Gian Bắt Đầu</label>
+						<div class  ="col-sm-9">
+							<input type ="text" class="form-control" id="thoigianbatdau" name="txtthoigianbatdau" placeholder="Vui lòng nhập thời gian bắt đầu DD-MM-YYYY H:M:S" />
+							
+						</div>
+					</div>
+					<div class  ="col-sm-12"><span id="helpBlock2" class="help-block" >Vui lòng nhập theo mẫu DD-MM/-YYY H:M:S </span></div>
+								</div>
+					<div class  ="form-group">
+						<label for  ="inputEmail3" class="col-sm-3 control-label">Thời Gian Nộp</label>
+						<div class  ="col-sm-9">
+							<input type ="text" class="form-control" id="thoigiannop" name="txtthoigiannop" placeholder="Vui lòng nhập thời gian nộp DD-MM-YYYY H:M:S" />
+							
+						</div>
+					</div>
+					<div  class  ="col-sm-12"><span id="helpBlock2" class="help-block" >Vui lòng nhập theo mẫu DD-MM/-YYY H:M:S </span></div>
+								</div>
 						
 					
 					
