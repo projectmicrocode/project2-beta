@@ -19,10 +19,16 @@ class DeTaiController extends Controller
         $datatime = DB::table('deadline')->select('thoigian')->get();
         foreach ($datatime as $value) {
            $time = $value->thoigian;
+           
+
         }
+        $time1 = str_replace("T", " ", $time);
+        // return $time1;
        
-        $dateLocale = Carbon::createFromFormat('d-m-Y H:i:s',$time);
+        $dateLocale = Carbon::createFromFormat('Y-m-d H:i',$time1);
+        
         $dt = $dateLocale->timestamp;
+        // return $dt;
         $thoiGianHienTai = Carbon::now();
         $dtht = $thoiGianHienTai->timestamp;
        

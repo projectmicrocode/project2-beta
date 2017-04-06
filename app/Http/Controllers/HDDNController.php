@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use DateTime;
 use App\Http\Requests\NopDeCuongRequest;
 use App\DeCuong;
+use App\Http\Requests;
+use App\NhiemVu;
+
 
 
 class HDDNController extends Controller
@@ -50,23 +53,38 @@ class HDDNController extends Controller
     }
     public function getchitietdecuong(){
         $id = Auth::id();
-        $data =  DB::table('decuong')
-                ->join('users','users.id','=','decuong.id_user')
-                ->where('users.id',$id)
-                ->select('decuong.*','users.name')
-                ->get();
+        $hddnname = DB::table('users')->where('id',$id)->select('name')->get();
+        foreach ($hddnname as  $value) {
+            $name = $value->name;
+        }
+        
+        $id_sv =  DB::table('phancong')->where('hotenhddn',$name)->select('id_user_sv')->get();
+        foreach ($id_sv as $value) {
+            $data[] = DB::table('users')->where('id',$value->id_user_sv)->select('name')->get();
+        }
+        $datanhiemvu = DB::table('nhiemvu')->where('id_user',$id)->select('*')->get();
+        // return $datanhiemvu;
 
-        return view('layouts/huongdandoanhnghiep/nopdecuongchitiet',['data'=>$data]);
+        return view('layouts/huongdandoanhnghiep/nopdecuongchitiet',['data'=>$data,'datanhiemvu'=>$datanhiemvu]);
     }
-    public function postnopdecuong(NopDeCuongRequest $request){
+    public function postnopdecuong(Request $request){
         $id = Auth::id();
-        $name =$request->file('chondecuong')->getClientOriginalName();
-        $request->file('chondecuong')->move('../storage/decuong',$name);
-        $decuong = new DeCuong;
-        $decuong->tendecuong = $name;
-        $decuong->id_user = $id;
-        $decuong->created_at =  new DateTime();
-        $decuong->save();
-        return redirect()->route('getchitietdecuong');
+        if($request->sltSV == '0'){
+            return redirect()->route('getchitietdecuong')->with('status', 'Gửi Thất Bại! Vui Lòng Chọn Sinh Viên Thực Tập');
+        }else
+        {
+            $nhiemvu = new NhiemVu;
+            $nhiemvu->noidungcv = $request->txtnoidung;
+            $nhiemvu->yeucaudaura = $request->txtyeucaudaura;
+            $nhiemvu->thoigianbatdau = $request->txtthoigianbatdau;
+            $nhiemvu->thoigianketthuc = $request->txtthoigianketthuc;
+            $nhiemvu->tensvthuctap = $request->sltSV;
+            $nhiemvu->id_user = $id;
+            $nhiemvu->created_at = new DateTime();
+            $nhiemvu->save();
+            return redirect()->route('getchitietdecuong')->with('status', 'Gửi Thành Công!');
+        }
+
+        
     }
 }
